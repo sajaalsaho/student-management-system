@@ -17,11 +17,36 @@ Sistemin barındırdığı temel fonksiyonlar şunlardır:
 4-) **Raporlama:** Öğrenci listesini ve not dökümlerini görüntüleme.
 
 ## C-) Kullanılan Teknolojiler
-* **Programlama Dili:** Python (Flask / FastAPI).
-* **Veritabanı:** SQLite / JSON.
+* **Programlama Dili:** Python (Flask).
+* **Veritabanı:** SQLite.
 * **Versiyon Kontrolü:** Git & GitHub.
 * **Proje Yönetimi (Agile):** GitHub Projects (Kanban Panosu).
 * **Test Aracı:** Pytest (Otomatik Birim Testleri).
 * **CI/CD:** GitHub Actions.
 * **Konteynerleştirme:** Docker.
 * **Bulut Dağıtımı :** Render / Railway (PaaS).
+
+
+## D-) Kurulum ve Çalıştırma
+```bash
+git clone https://github.com/sajaalsaho/student-management-system.git
+cd student-management-system
+python -m venv venv
+# Windows: venv\Scripts\Activate.ps1   |  Mac/Linux: source venv/bin/activate
+pip install -r requirements.txt
+python run.py
+```
+
+Uygulama: http://127.0.0.1:5000
+
+## E-) Test
+```bash
+pytest -v
+```
+## F-) Docker
+```bash
+docker build -t student-management-system .
+docker run -p 5000:5000 student-management-system
+```
+
+## G-) Canlı Uygulama
