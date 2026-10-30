@@ -1,0 +1,24 @@
+<!doctype html>
+<html lang="tr">
+<head>
+  <meta charset="utf-8">
+  <title>Öğrenci Yönetim Sistemi</title>
+  <style>
+    body { font-family: Arial, sans-serif; max-width: 800px; margin: 2rem auto; padding: 0 1rem; }
+    nav a { margin-right: 1rem; }
+    table { border-collapse: collapse; width: 100%; margin-top: 1rem; }
+    td, th { border: 1px solid #ccc; padding: 6px; text-align: left; }
+    .flash { background: #eef; padding: 8px; margin: 8px 0; }
+    input, select { padding: 4px; margin-right: 6px; }
+  </style>
+</head>
+<body>
+  <h1>Öğrenci Yönetim Sistemi</h1>
+  <nav>
+    <a href="{{ url_for('students.students') }}">Öğrenciler</a>
+    <!-- NAV -->
+  </nav>
+  {% for m in get_flashed_messages() %}<div class="flash">{{ m }}</div>{% endfor %}
+  {% block content %}{% endblock %}
+</body>
+</html>

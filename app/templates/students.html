@@ -1,0 +1,25 @@
+{% extends "base.html" %}
+{% block content %}
+<h2>Öğrenciler</h2>
+<form method="post">
+  <input name="name" placeholder="Ad Soyad" required>
+  <input name="number" placeholder="Öğrenci No" required>
+  <button type="submit">Ekle</button>
+</form>
+<table>
+  <tr><th>No</th><th>Ad Soyad</th><th>İşlem</th></tr>
+  {% for s in students %}
+  <tr>
+    <td>{{ s.number }}</td>
+    <td>{{ s.name }}</td>
+    <td>
+      <form method="post" action="{{ url_for('students.delete', student_id=s.id) }}">
+        <button type="submit">Sil</button>
+      </form>
+    </td>
+  </tr>
+  {% else %}
+  <tr><td colspan="3">Henüz öğrenci yok.</td></tr>
+  {% endfor %}
+</table>
+{% endblock %}
