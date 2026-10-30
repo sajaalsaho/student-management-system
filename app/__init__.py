@@ -19,9 +19,11 @@ def create_app(test_config=None):
     from .routes_students import bp as students_bp
     app.register_blueprint(students_bp)
 
-
     from .routes_courses import bp as courses_bp
     app.register_blueprint(courses_bp)
+
+    from .routes_report import bp as report_bp
+    app.register_blueprint(report_bp)
 
     with app.app_context():
         db.init_db()
