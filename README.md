@@ -50,4 +50,4 @@ docker run -p 5000:5000 student-management-system
 ```
 
 ## G-) Canlı Uygulama
-(Hafta 06'da eklenecek)
+eklenecek.
