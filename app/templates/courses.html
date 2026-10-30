@@ -1,0 +1,17 @@
+{% extends "base.html" %}
+{% block content %}
+<h2>Dersler</h2>
+<form method="post">
+  <input name="code" placeholder="Ders Kodu (ör. MYM101)" required>
+  <input name="name" placeholder="Ders Adı" required>
+  <button type="submit">Ekle</button>
+</form>
+<table>
+  <tr><th>Kod</th><th>Ad</th></tr>
+  {% for c in courses %}
+  <tr><td>{{ c.code }}</td><td>{{ c.name }}</td></tr>
+  {% else %}
+  <tr><td colspan="2">Henüz ders yok.</td></tr>
+  {% endfor %}
+</table>
+{% endblock %}

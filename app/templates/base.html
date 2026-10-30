@@ -16,7 +16,8 @@
   <h1>Öğrenci Yönetim Sistemi</h1>
   <nav>
     <a href="{{ url_for('students.students') }}">Öğrenciler</a>
-    <!-- NAV -->
+    <a href="{{ url_for('courses.courses') }}">Dersler</a>
+    <a href="{{ url_for('courses.grades') }}">Notlar</a>
   </nav>
   {% for m in get_flashed_messages() %}<div class="flash">{{ m }}</div>{% endfor %}
   {% block content %}{% endblock %}
