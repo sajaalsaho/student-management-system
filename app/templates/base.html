@@ -19,6 +19,8 @@
     <a href="{{ url_for('courses.courses') }}">Dersler</a>
     <a href="{{ url_for('courses.grades') }}">Notlar</a>
   </nav>
+      <a href="{{ url_for('report.report') }}">Rapor</a>
+    <!-- NAV -->
   {% for m in get_flashed_messages() %}<div class="flash">{{ m }}</div>{% endfor %}
   {% block content %}{% endblock %}
 </body>

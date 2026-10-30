@@ -74,3 +74,17 @@ def calculate_average(student_id):
         "SELECT AVG(grade) AS avg FROM grades WHERE student_id = ?", (student_id,)
     ).fetchone()
     return round(row["avg"], 2) if row["avg"] is not None else None
+
+def get_report():
+    report = []
+    for s in list_students():
+        grades = get_db().execute(
+            """SELECT c.code, c.name, g.grade
+               FROM grades g JOIN courses c ON c.id = g.course_id
+               WHERE g.student_id = ? ORDER BY c.code""",
+            (s["id"],),
+        ).fetchall()
+        report.append(
+            {"student": s, "grades": grades, "average": calculate_average(s["id"])}
+        )
+    return report
