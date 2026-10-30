@@ -62,3 +62,7 @@ def test_invalid_grade_rejected(app):
 def test_pages_load(client):
     for url in ["/students", "/courses", "/grades", "/report"]:
         assert client.get(url).status_code == 200
+def test_health_endpoint(client):
+    response = client.get("/health")
+    assert response.status_code == 200
+    assert response.get_json() == {"status": "ok"}        

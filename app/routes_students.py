@@ -1,3 +1,4 @@
+from flask import current_app
 from flask import Blueprint, flash, redirect, render_template, request, url_for
 from . import services
 
@@ -15,6 +16,7 @@ def students():
         try:
             services.add_student(request.form.get("name"), request.form.get("number"))
             flash("Öğrenci eklendi.")
+            current_app.logger.info("Ogrenci eklendi")            
         except ValueError as e:
             flash(str(e))
         return redirect(url_for("students.students"))
@@ -25,4 +27,5 @@ def students():
 def delete(student_id):
     services.delete_student(student_id)
     flash("Öğrenci silindi.")
+    current_app.logger.info("Ogrenci silindi: id=%s", student_id)    
     return redirect(url_for("students.students"))
