@@ -1,0 +1,32 @@
+{% extends "base.html" %}
+{% block content %}
+<h2>Not Girişi</h2>
+<form method="post">
+  <select name="student_id" required>
+    {% for s in students %}<option value="{{ s.id }}">{{ s.number }} - {{ s.name }}</option>{% endfor %}
+  </select>
+  <select name="course_id" required>
+    {% for c in courses %}<option value="{{ c.id }}">{{ c.code }} - {{ c.name }}</option>{% endfor %}
+  </select>
+  <input name="grade" type="number" step="0.01" min="0" max="100" placeholder="Not (0-100)" required>
+  <button type="submit">Kaydet</button>
+</form>
+
+<h3>Girilen Notlar</h3>
+<table>
+  <tr><th>Öğrenci</th><th>Ders</th><th>Not</th></tr>
+  {% for g in grades %}
+  <tr><td>{{ g.student }}</td><td>{{ g.course }}</td><td>{{ g.grade }}</td></tr>
+  {% else %}
+  <tr><td colspan="3">Henüz not yok.</td></tr>
+  {% endfor %}
+</table>
+
+<h3>Genel Ortalamalar</h3>
+<table>
+  <tr><th>Öğrenci</th><th>Ortalama</th></tr>
+  {% for a in averages %}
+  <tr><td>{{ a.name }}</td><td>{{ a.average if a.average is not none else "-" }}</td></tr>
+  {% endfor %}
+</table>
+{% endblock %}
