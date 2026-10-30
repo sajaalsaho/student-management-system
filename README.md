@@ -32,7 +32,7 @@ Sistemin barındırdığı temel fonksiyonlar şunlardır:
 git clone https://github.com/sajaalsaho/student-management-system.git
 cd student-management-system
 python -m venv venv
-# Windows: venv\Scripts\Activate.ps1   |  Mac/Linux: source venv/bin/activate
+# Windows: venv\Scripts\Activate.ps1  
 pip install -r requirements.txt
 python run.py
 ```
