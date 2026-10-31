@@ -5,6 +5,7 @@ Bu proje, Modern Yazılım Mühendisliği – Bulut ve DevOps dersi kapsamında;
 küçük ölçekli ve temel fonksiyonlara sahip bir Öğrenci Yönetim Sistemi geliştirilmesini amaçlamaktadır.
 Süreç, yazılım yaşam döngüsüne uygun olarak DevOps ve bulut yaklaşımlarıyla yönetilmekte; 
 versiyon kontrolü, otomatik test, CI/CD pipeline, Docker ile konteynerleştirme ve bulut dağıtımı süreçleri uygulamalı olarak entegre edilmektedir.
+
 ## B-) Temel Fonksiyonlar
 Sistemin barındırdığı temel fonksiyonlar şunlardır:
 
@@ -24,10 +25,14 @@ Sistemin barındırdığı temel fonksiyonlar şunlardır:
 * **Test Aracı:** Pytest (Otomatik Birim Testleri).
 * **CI/CD:** GitHub Actions.
 * **Konteynerleştirme:** Docker.
-* **Bulut Dağıtımı :** Render / Railway (PaaS).
+* **Bulut Dağıtımı :** Render (PaaS).
+
+## D-) Proje Yapısı
+
+## E-) Sayfalar
 
 
-## D-) Kurulum ve Çalıştırma
+## F-) Yerelde Kurulum ve Çalıştırma
 ```bash
 git clone https://github.com/sajaalsaho/student-management-system.git
 cd student-management-system
@@ -39,23 +44,35 @@ python run.py
 
 Uygulama: http://127.0.0.1:5000
 
-## E-) Test
+## G-) Test
 ```bash
 pytest -v
 ```
-## F-) Docker
+Projede 7 birim testi vardır (öğrenci ekleme/silme, tekrarlı numara, ortalama, geçersiz not, sayfaların açılması, health endpoint).
+
+
+## H-) CI/CD
+* **CI:** `.github/workflows/ci.yml` dosyası, `main`'e her push'ta ve her Pull Request'te testleri GitHub Actions üzerinde otomatik çalıştırır.
+* **CD:** Render, `main` branch'ine her merge sonrası yeni sürümü otomatik yayınlar.
+* **Git akışı:** Her özellik ayrı `feature/...` branch'inde geliştirilip Pull Request ile `main`'e alınmıştır.
+
+## I-) Docker
 ```bash
 docker build -t student-management-system .
 docker run -p 5000:5000 student-management-system
 ```
 
-## G-) Canlı Uygulama
+## J-) Canlı Uygulama
 **Canlı URL:** https://student-management-system-wcov.onrender.com
 
-Uygulama Render (PaaS) üzerinde Docker konteyneri olarak çalışmaktadır. Render, `main` branch'inden `Dockerfile`'ı alarak imajı oluşturur.
+**Sağlık kontrolü:** https://student-management-system-wcov.onrender.com/health
 
-**Ortam değişkenleri:** `SECRET_KEY` değeri koda yazılmamıştır, yalnızca Render panelinde tanımlıdır. `PORT` değerini Render sağlar, uygulama bu değeri okur (yerelde varsayılan 5000).
+Uygulama Render (PaaS) üzerinde Docker konteyneri olarak çalışmaktadır.
+
+**Güvenlik:** `SECRET_KEY` değeri koda yazılmamıştır, yalnızca Render panelinde ortam değişkeni olarak tanımlıdır. Erişim HTTPS üzerindendir.
+
+**İzleme ve loglama:** `/health` endpoint'i veritabanı bağlantısını kontrol eder ve Render Health Check olarak kullanılır. Uygulama olayları (başlatma, öğrenci ekleme/silme, health check) Render Logs ekranında görüntülenir.
 
 **Bilinen kısıtlar (Render ücretsiz plan):**
-- Uygulama bir süre kullanılmazsa uyku moduna geçer, ilk istek 50 saniye veya daha uzun sürebilir.
-- Kalıcı disk yoktur. SQLite veritabanı, uygulama yeniden başladığında sıfırlanabilir. Kalıcı veri için ücretli plan veya Render Postgres gibi harici bir veritabanı gerekir.
+* Uygulama bir süre kullanılmazsa uyku moduna geçer, ilk istek 50 saniye veya daha uzun sürebilir.
+* Kalıcı disk yoktur. SQLite veritabanı, uygulama yeniden başladığında sıfırlanabilir. Kalıcı veri için ücretli plan veya Render Postgres gibi harici bir veritabanı gerekir.
