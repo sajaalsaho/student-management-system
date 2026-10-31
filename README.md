@@ -52,9 +52,13 @@ docker run -p 5000:5000 student-management-system
 ## G-) Canlı Uygulama
 **Canlı URL:** https://student-management-system-wcov.onrender.com
 
-Uygulama Render (PaaS) üzerinde Docker konteyneri olarak çalışmaktadır. Render, `main` branch'inden `Dockerfile`'ı alarak imajı oluşturur.
+**Sağlık kontrolü:** https://student-management-system-wcov.onrender.com/health
 
-**Ortam değişkenleri:** `SECRET_KEY` değeri koda yazılmamıştır, yalnızca Render panelinde tanımlıdır. `PORT` değerini Render sağlar, uygulama bu değeri okur (yerelde varsayılan 5000).
+Uygulama Render (PaaS) üzerinde Docker konteyneri olarak çalışmaktadır. `main` branch'ine her merge sonrası Render otomatik olarak yeni sürümü yayınlar (CD).
+
+**Ortam değişkenleri:** `SECRET_KEY` değeri koda yazılmamıştır, yalnızca Render panelinde tanımlıdır. `PORT` değerini Render sağlar (yerelde varsayılan 5000).
+
+**İzleme ve loglama:** `/health` endpoint'i veritabanı bağlantısını kontrol eder. Uygulama olayları (başlatma, öğrenci ekleme/silme, health check) Render Logs ekranında görüntülenir.
 
 **Bilinen kısıtlar (Render ücretsiz plan):**
 - Uygulama bir süre kullanılmazsa uyku moduna geçer, ilk istek 50 saniye veya daha uzun sürebilir.
